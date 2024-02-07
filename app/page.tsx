@@ -22,7 +22,7 @@ export default function Home() {
         </h1>
         <p className="text-white text-large">A simple authentication service</p>
         <div className="flex justify-center">
-          <LoginButton asChild mode="model">
+          <LoginButton asChild>
             <Button variant={"secondary"} size={"lg"}>
               Sign in
             </Button>
