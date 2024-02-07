@@ -1,0 +1,35 @@
+import { Resend } from "resend";
+
+const domain = process.env.NEXT_PUBLIC_APP_URL;
+const resend = new Resend(process.env.RESEND_API_KEY);
+resend.apiKeys.create({ name: "Production" });
+
+export const sendTwoFactorTokenEmail = async (email: string, token: string) => {
+  await resend.emails.send({
+    from: "mail@faheemahmad.tech",
+    to: email,
+    subject: "Your 2FA token",
+    html: `<p>Your 2FA token is: ${token}</p>`,
+  });
+};
+
+export const sendPasswordResetEmail = async (email: string, token: string) => {
+  const resetLink = `$(domain)/auth/new-password?token=${token}`;
+  await resend.emails.send({
+    from: "mail@faheemahmad.tech",
+    to: email,
+    subject: "Confirm yor email",
+    html: `<p>Click <a href=${resetLink}>here</a> to reset your password</p>`,
+  });
+};
+
+export const sendVerificationEmail = async (email: string, token: string) => {
+  const confirmLink = `$(domain)/auth/new-verification?token=${token}`;
+
+  await resend.emails.send({
+    from: "mail@faheemahmad.tech",
+    to: email,
+    subject: "Confirm yor email",
+    html: `<p>Click <a href=${confirmLink}>here</a> to confirm your email</p>`,
+  });
+};
