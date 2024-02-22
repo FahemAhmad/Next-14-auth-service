@@ -82,8 +82,8 @@ export const LoginForm = () => {
       <br />
        <p className="text-muted-foreground text-sm">Test Credentials</p>
        <br />
-       <p className="text-red-800 text-sm">Email : test@yopmail.com</p>
-       <p className="text-red-800 text-sm">Pass: Test@1234</p>
+       <p className="text-gray-800 text-sm">Email : test@yopmail.com</p>
+       <p className="text-gray-800 text-sm">Pass  : Test@1234</p>
        <br />
        <hr />
       <Form {...form}>
