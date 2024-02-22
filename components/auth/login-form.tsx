@@ -21,6 +21,9 @@ import { login } from "@/actions/login";
 import { useState, useTransition } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
+import { Card, CardContent, CardHeader } from "../ui/card";
+import { Header } from "./header";
+import Head from "next/head";
 
 export const LoginForm = () => {
   const searchParams = useSearchParams();
@@ -67,34 +70,44 @@ export const LoginForm = () => {
   };
 
   return (
+    <>
+
     <CardWrapper
       headerLabel="Welcome Back"
       backButtonLabel="Dont have an account?"
       backButtonRef="/auth/register"
       showSocial
-    >
+     >
+      <hr />
+      <br />
+       <p className="text-muted-foreground text-sm">Test Credentials</p>
+       <br />
+       <p className="text-red-800 text-sm">Email : test@yopmail.com</p>
+       <p className="text-red-800 text-sm">Pass: Test@1234</p>
+       <br />
+       <hr />
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           <div className="space-y-4">
             {showTwoFactor && (
               <FormField
-                control={form.control}
-                name="code"
-                render={({ field }) => (
-                  <FormItem>
+              control={form.control}
+              name="code"
+              render={({ field }) => (
+                <FormItem>
                     <FormLabel>Two Factor Code</FormLabel>
                     <FormControl>
                       <Input
                         {...field}
                         placeholder="123456"
                         disabled={isPending}
-                      />
+                        />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
-              />
-            )}
+                />
+                )}
             {!showTwoFactor && (
               <>
                 <FormField
@@ -109,12 +122,12 @@ export const LoginForm = () => {
                           placeholder="john.doe@example.com"
                           type="email"
                           disabled={isPending}
-                        />
+                          />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
-                />
+                  />
                 <FormField
                   control={form.control}
                   name="password"
@@ -127,20 +140,20 @@ export const LoginForm = () => {
                           placeholder="*****"
                           type="password"
                           disabled={isPending}
-                        />
+                          />
                       </FormControl>
                       <Button
                         size={"sm"}
                         variant={"link"}
                         asChild
                         className="px-0 font-normal"
-                      >
+                        >
                         <Link href="/auth/reset">Forgot Password?</Link>
                       </Button>
                       <FormMessage />
                     </FormItem>
                   )}
-                />
+                  />
               </>
             )}
           </div>
@@ -152,5 +165,6 @@ export const LoginForm = () => {
         </form>
       </Form>
     </CardWrapper>
+            </>
   );
 };
